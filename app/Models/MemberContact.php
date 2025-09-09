@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MemberContact extends Model
 {
+    use HasFactory; 
+    
     protected $fillable = [
         'member_id', 
         'email',
@@ -14,4 +18,9 @@ class MemberContact extends Model
     ];
 
     public $timestamps = false;
+
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
+    }
 }

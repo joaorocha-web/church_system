@@ -12,8 +12,11 @@ class MemberController extends Controller
 {
     public function index()
     {
-        $members = Member::all();
-        return view('member.index', ['members' => $members]);
+        $members = Member::with(['ministries', 'contact', 'status'])->orderBy('created_at', 'desc')->paginate(6);
+        // foreach($members as $member){
+        //     dd($member->status->situation);
+        // }
+        return view('member.index', compact('members'));
     }
 
     public function create()
@@ -42,6 +45,6 @@ class MemberController extends Controller
         ]);
 
         DB::commit();
-        return redirect()->route('member.create');
+        return redirect()->route('member.index');
     }
 }

@@ -110,8 +110,8 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($members as $member)
           <tr>
-            @foreach ($members as $member)
           <td class="p-4 border-b border-blue-gray-50">
             <div class="flex items-center gap-3">
               <div class="flex flex-col">
@@ -120,56 +120,69 @@
                 </p>
                 <p
                   class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                  john@creative-tim.com
+                  {{$member->contact->email}}
                 </p>
               </div>
             </div>
           </td>
           <td class="p-4 border-b border-blue-gray-50">
             <div class="flex flex-col">
-              <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                Louvor
-              </p>
-              <p
-                class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                Recepção
-              </p>
+              @foreach($member->ministries as $ministry)
+                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                  {{$ministry->name}}
+                </p>
+              @endforeach
+              
             </div>
           </td>
           <td class="p-4 border-b border-blue-gray-50">
             <div class="w-max">
               <div
                 class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                <span class="">online</span>
+                <span class="">{{$member->status->situation}}</span>
               </div>
             </div>
           </td>
           <td class="p-4 border-b border-blue-gray-50">
             <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-              23/04/18
+              {{$member->membership_start}}
             </p>
           </td>
           
-          @endforeach
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
   <div class="flex items-center justify-between p-4 border-t border-blue-gray-50">
     <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-      Page 1 of 10
+      Mostrando {{$members->firstItem()}} a {{$members->lastItem()}}
     </p>
     <div class="flex gap-2">
-      <button
-        class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-        type="button">
-        Previous
-      </button>
-      <button
-        class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-        type="button">
-        Next
-      </button>
+      @if ($members->onFirstPage())
+            <button disabled
+                class="select-none rounded-lg border border-gray-300 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-300 transition-all cursor-not-allowed"
+                type="button">
+                Previous
+            </button>
+        @else
+            <a href="{{ $members->previousPageUrl() }}"
+                class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]">
+                Previous
+            </a>
+        @endif
+      @if ($members->hasMorePages())
+            <a href="{{ $members->nextPageUrl() }}"
+                class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]">
+                Next
+            </a>
+        @else
+            <button disabled
+                class="select-none rounded-lg border border-gray-300 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-300 transition-all cursor-not-allowed"
+                type="button">
+                Next
+            </button>
+        @endif
     </div>
   </div>
 </div>
