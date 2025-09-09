@@ -1,5 +1,5 @@
 <x-layout>
-<div class="pt-20 flex justify-center">
+<div class="pt-10 flex justify-center">
   <form class="w-full max-w-lg" method="POST" action="{{route('member.store')}}">
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -81,7 +81,7 @@
           <option value="1">Masculino</option>
           <option value="2">Feminino</option>
         </select>
-        @error ('telefone_1')
+        @error ('gender_id')
         <p class="text-red-500 text-xs italic">Selecione uma opção.</p>
         @enderror
       </div>

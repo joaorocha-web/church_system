@@ -13,9 +13,7 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::with(['ministries', 'contact', 'status'])->orderBy('created_at', 'desc')->paginate(6);
-        // foreach($members as $member){
-        //     dd($member->status->situation);
-        // }
+     
         return view('member.index', compact('members'));
     }
 
@@ -46,5 +44,10 @@ class MemberController extends Controller
 
         DB::commit();
         return redirect()->route('member.index');
+    }
+
+    public function edit()
+    {
+        return 'Precisa fazer';
     }
 }
