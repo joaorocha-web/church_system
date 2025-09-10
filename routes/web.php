@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,5 +13,8 @@ Route::post('/novo-membro', [MemberController::class, 'store'])->name('member.st
 Route::get('/editar-membro', [MemberController::class, 'edit'])->name('member.edit');
 
 Route::get('/registrar-usuario', [UserController::class, 'create'])->name('user.create');
-Route::post('/registrar-usuario', [UserController::class, 'autenticateMember'])->name('user.create');
-Route::post('/salvar-usuario/{id}', [UserController::class, 'store'])->name('user.store');
+Route::post('/salvar-usuario', [UserController::class, 'store'])->name('user.store');
+
+Route::get('/login', [SessionController::class, 'create'])->name('login.create');
+Route::post('/login', [SessionController::class, 'store'])->name('login.store');
+Route::get('/logout', [SessionController::class, 'destroy'])->name('login.destroy');

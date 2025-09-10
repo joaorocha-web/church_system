@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,23 @@
 </head>
 <body >
     <div>
-        <header class="bg-black text-white p-10">
+        <header class="bg-black text-white p-10 relative">
             <div class="flex justify-center items-center">
                 <h1 class="mr-4 text-4xl font-bold text-white/100">A Caminho do Alvo</h1>
                 <a href="/">
                     <img src="{{Vite::asset('resources/images/ica_logo.png')}}" alt="logo" class="w-[60px]">
                 </a>
+            </div>
+            <div class="absolute bottom-10 right-10">
+                <x-btn-cancel>
+                    @guest
+                    <a href="{{route('login.create')}}">Login</a>
+                    @endguest
+                    @auth
+                    <a href="{{route('login.destroy')}}">Logout</a>
+                    @endauth
+                </x-btn-cancel>
+                
             </div>
          
         </header>
