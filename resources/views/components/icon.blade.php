@@ -1,0 +1,1 @@
+<i {{$attributes->merge(['class' => ' text-2xl group-hover:scale-140 transition-scale duration-300 group-hover:mb-4'])}}></i>

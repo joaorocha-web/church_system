@@ -8,34 +8,53 @@
     <title>ICA</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body >
+<body class="font-title">
+    <style>
+        
+    </style>
     <div>
-        <header class="bg-black text-white p-10 relative">
-            <div class="flex justify-center items-center">
-                <h1 class="mr-4 text-4xl font-bold text-white/100">A Caminho do Alvo</h1>
-                <a href="/">
-                    <img src="{{Vite::asset('resources/images/ica_logo.png')}}" alt="logo" class="w-[60px]">
-                </a>
+        <header class="bg-black shadow-xl/30  text-white p-4 md:p-6 flex justify-between">
+            <div class="flex-col align-center ml-4">
+                <span class=" text-center font-bold sm:text-2xl" >A Caminho do Alvo</span>  
             </div>
-            <div class="absolute bottom-10 right-10">
-                <x-btn-cancel>
-                    @guest
-                    <a href="{{route('login.create')}}">Login</a>
-                    @endguest
-                    @auth
-                    <a href="{{route('login.destroy')}}">Logout</a>
-                    @endauth
-                </x-btn-cancel>
-                
+            <div class="">
+                <i class="bi bi-list" id="list"></i>
             </div>
          
         </header>
-        <main class="p-10">
+        <main class="bg-white">
+            <div class="flex-col bg-[var(--color-beige)] text-center hidden" id="info">
+                <ul>
+                    <li class="hover:bg-white/10 border-t border-white"><a href="#">link</a></li>
+                    <li class="hover:bg-white/t0 border-t border-white"><a href="#">link</a></li>
+                    <li class="hover:bg-white/t0 border-t border-white"><a href="#">link</a></li>
+                    <li class="hover:bg-white/t0 border-t border-white"><a href="#">link</a></li>
+
+                </ul>
+            </div>
             {{$slot}}
         </main>
         <footer>
             
         </footer>
     </div>
+
+    <script>
+        
+        let list = document.getElementById('list');
+        let div = document.getElementById('info');
+        
+        list.addEventListener('click', function() {
+            
+            if (div.classList.contains('hidden')) {
+                div.classList.remove('hidden');
+                div.classList.add('block');
+            } else {
+                div.classList.remove('block');
+                div.classList.add('hidden');
+            }
+        });
+
+    </script>
 </body>
 </html>
