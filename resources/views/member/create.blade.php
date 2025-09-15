@@ -1,5 +1,5 @@
 <x-layout>
-<div class="pt-10 flex justify-center">
+<div class="py-10 flex justify-center">
   <form class="w-full max-w-lg" method="POST" action="{{route('member.store')}}">
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">

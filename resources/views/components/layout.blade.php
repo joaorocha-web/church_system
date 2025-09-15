@@ -22,7 +22,7 @@
             </div>
          
         </header>
-        <main class="bg-white">
+        <main class="bg-black">
             <div class="flex-col bg-[var(--color-beige)] text-center hidden" id="info">
                 <ul>
                     <li class="hover:bg-white/10 border-t border-white"><a href="#">link</a></li>

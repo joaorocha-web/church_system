@@ -8,11 +8,28 @@
         .card{
             height: 300px;
         }
+        
+        .bg-igreja-responsive {
+        background-image: url('{{asset('imagem-igreja-800.jpg')}}');
+        }
+
+        @media (min-width: 768px) {
+        .bg-igreja-responsive {
+            background-image: url('{{asset('imagem-igreja-1080.jpg')}}');
+        }
+
+        @media (min-width: 1080px) {
+        .bg-igreja-responsive {
+            background-image: url('{{asset('imagem-igreja-1920.jpg')}}');
+        }   
+        }
+}
     </style>
-    <div class="h-[150px] bg-contain bg-center bg-no-repeat flex justify-center items-center">
-        <h1 class="text-beige font-bold text-2xl md:text-7xl">SEJA BEM VINDO!</h1>
+    <div class="h-[400px] md:h-[350px] lg:h-[500px] bg-igreja-responsive bg-cover bg-center bg-no-repeat flex justify-center items-center relative" >
+        <h1 class="text-beige font-bold text-2xl md:text-7xl z-1">SEJA BEM VINDO!</h1>
+        <div class="absolute inset-0 bg-black/60"></div>
     </div>
-    <div class="windows" style="--columns: 4">
+    <div class="windows p-3" style="--columns: 4">
         <x-window style="background-image: url('{{asset('retiro.jpeg')}}')">
             <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500"></div>
             <x-icon class="bi bi-house z-1"/>
