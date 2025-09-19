@@ -15,12 +15,12 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        $attributes = $request->validate([
+        $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
 
-        if( !Auth::attempt($attributes)){
+        if( !Auth::attempt($credentials)){
             throw ValidationException::withMessages([
                 'email' => 'Dados de login inválidos'
             ]);
@@ -28,7 +28,7 @@ class SessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/');
+        return redirect()->intended('/home');
     }
 
     public function destroy(){

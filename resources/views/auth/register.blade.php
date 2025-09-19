@@ -7,7 +7,7 @@
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
           E-mail
         </label>
-        <x-form-input id="email" name="email" type="email" value="{{old('email')}}"/>
+        <x-form-input id="email" name="email" type="email" value="{{old('email')}}" placeholder="email@email.com"/>
         <x-error name="email"/>
       </div>
     </div>
@@ -16,7 +16,7 @@
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password">
           Crie sua Senha
         </label>
-        <x-form-input id="password" name="password" type="password" placeholder="Sua senha deve conter 8 dígitos" value="1234j1234"/>
+        <x-form-input id="password" name="password" type="password" placeholder="Sua senha deve conter 8 dígitos" />
         <x-error name="password"/>
       </div>
     </div>
@@ -26,7 +26,7 @@
           Confirme sua senha
         </label>
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password_confirmation" >
-        <x-form-input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirme sua senha" value="1234j1234"/>
+        <x-form-input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirme sua senha" />
         <x-error name="password_confirmation"/>
       </div>
     </div>

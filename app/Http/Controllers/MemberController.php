@@ -7,11 +7,13 @@ use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use App\Models\MemberContact;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class MemberController extends Controller
 {
     public function index()
     {
+        // Gate::authorize('admin');
         $members = Member::with(['ministries', 'contact', 'status'])->orderBy('created_at', 'desc')->paginate(6);
      
         return view('member.index', compact('members'));

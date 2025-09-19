@@ -17,12 +17,22 @@
             <div class="flex-col align-center ml-4">
                 <span class=" text-center font-bold sm:text-2xl" >A Caminho do Alvo</span>  
             </div>
-            <div class="">
+            {{-- <div class="">
                 <i class="bi bi-list" id="list"></i>
+            </div> --}}
+            @guest
+            <div class=" rounded p-1 hover:bg-white/20">
+                <span><a href="{{route('login.create')}}">Login</a></span>
             </div>
-         
+            @endguest
+            @auth
+            <div class=" rounded p-1 hover:bg-white/20">
+                <span><a href="{{route('login.destroy')}}">Logout</a></span>
+            </div>
+            @endauth
+            
         </header>
-        <main class="bg-black">
+        <main class="bg-black text-white">
             <div class="flex-col bg-[var(--color-beige)] text-center hidden" id="info">
                 <ul>
                     <li class="hover:bg-white/10 border-t border-white"><a href="#">link</a></li>

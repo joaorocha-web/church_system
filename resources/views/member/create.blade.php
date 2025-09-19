@@ -4,14 +4,14 @@
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first_name">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="first_name">
           Nome
         </label>
         <x-form-input id="first_name" name="first_name" type="text" placeholder="Zacarias" value="{{old('first_name')}}"/>
         <x-error name="first_name"/>
       </div>
       <div class="w-full md:w-1/2 px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last_name">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="last_name">
           Sobrenome
         </label>
         <x-form-input id="last_name" name="last_name" type="text" placeholder="Souza" value="{{old('last_name')}}"/>
@@ -20,7 +20,7 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full px-3">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="email">
           E-mail
         </label>
         <x-form-input id="email" name="email" type="email" placeholder="email@email.com" value="{{old('email')}}"/>
@@ -29,14 +29,14 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-5">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="telefone_1">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="telefone_1">
           Telefone
         </label>
         <x-form-input id="telefone_1" name="telefone_1"  type="text" placeholder="ex: (32)99999999" value="{{old('telefone_1')}}"/>
         <x-error name="telefone_1"/>
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="telefone_2">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="telefone_2">
           Telefone
         </label>
         <div class="relative">
@@ -46,14 +46,14 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-5">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="birth_date">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="birth_date">
           Nascimento
         </label>
         <x-form-input id="birth_date" name="birth_date"  type="date"/>
         <x-error name="birth_date"/>
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="membership_start">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="membership_start">
           Membro desde
         </label>
         <div class="relative">
@@ -79,9 +79,9 @@
         Cancelar
       </a>
     </x-btn-cancel>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-3 py-2 px-4 border border-blue-700 rounded">
+    <x-btn-primary type="submit">
       Salvar
-    </button>
+    </x-btn-primary>
 
   </form>
 </div>

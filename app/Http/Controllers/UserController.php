@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Auth\Events\Registered;
 use App\Models\MemberContact;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -23,15 +25,17 @@ class UserController extends Controller
             return $result;
         }
         
-        User::create([
+        $user = User::create([
             'member_id' => $result->id,
             'name' => $result->first_name . '' . $result->last_name,
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'is_admin' => $request['is_admin']
         ]);
+
+        event(new Registered($user));
         
-        return redirect()->route('member.index');
+        return redirect()->route('verification.notice');
     }
 
     private function autenticateMember($email)
