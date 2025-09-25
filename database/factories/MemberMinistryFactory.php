@@ -19,7 +19,10 @@ class MemberMinistryFactory extends Factory
     {
         return [
             "member_id" => Member::factory(),
-            "ministry_id" => rand(1,5)
+            "ministry_id" => rand(1,5),
+            "status_id" => 1,
+            "start_date" => fake()->date(),
+            "end_date" => fake()->date(),
         ];
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -39,3 +41,15 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/login', [SessionController::class, 'create'])->name('login.create');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
 Route::get('/logout', [SessionController::class, 'destroy'])->name('login.destroy');
+
+Route::controller(MinistryController::class)->middleware('auth')->group(function () {
+    Route::get('/ministerios', 'index')->name('ministry.index');
+    Route::get('/ministerios/criar', 'create')->name('ministry.create');
+    // store
+    Route::get('/ministerios/editar/{id}', 'edit')->name('ministry.edit');
+    Route::put('/ministerios/editar/{id}', 'update')->name('ministry.update');
+
+    Route::get('/ministerios/inscrever/{id}', 'subscribe')->name('ministry.subscribe');
+});
+
+Route::get('/dashboard/gender', [DashboardController::class, 'getGenderDistribution'])->name('dashboard.gender');

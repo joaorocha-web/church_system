@@ -25,7 +25,6 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required' ,' email' , 'unique:users,email'],
             'password' => ['required', Password::min(8)->letters()->numbers(), 'confirmed'],
-            'is_admin' => 'nullable'
         ];
     }
 

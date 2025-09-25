@@ -13,7 +13,7 @@ class MemberController extends Controller
 {
     public function index()
     {
-        // Gate::authorize('admin');
+        Gate::authorize('admin');
         $members = Member::with(['ministries', 'contact', 'status'])->orderBy('created_at', 'desc')->paginate(6);
      
         return view('member.index', compact('members'));
@@ -40,8 +40,8 @@ class MemberController extends Controller
         MemberContact::create([
             'member_id' => $member->id,
             'email' => $request->email,
-            'telefone_1' => $request->telefone_1,
-            'telefone_2' => $request->telefone_2
+            'phone_number_1' => $request->phone_number_1,
+            'phone_number_2' => $request->phone_number_2
         ]);
 
         DB::commit();

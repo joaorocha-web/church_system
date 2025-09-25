@@ -1,4 +1,15 @@
-<x-layout>
+<x-layout >
+  <div class="bg-white grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
+        
+        <!-- Card do Gráfico -->
+        <div class="bg-gray-500 rounded-xl shadow-2xl p-2 hover:scale-105 hover:bg-gray-900">
+            <h2 class="text-xl font-bold text-gray-200 mb-4 text-center">
+                Homens x Mulheres
+            </h2>
+            <div id="ministryChart"></div>
+        </div>
+
+    </div>
   <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md ">
     <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
       <div class="flex items-center justify-between gap-8 mb-8">
@@ -199,4 +210,42 @@
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        fetch("{{ route('dashboard.gender') }}")
+            .then(res => res.json())
+            .then(data => {
+                var options = {
+                    chart: {
+                        type: 'donut',
+                        height: 200
+                    },
+                    series: [data.male, data.female],
+                    labels: ['Homens', 'Mulheres'],
+                    colors: ['#99ff00', '#333333'],
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                          colors: '#ffffff', 
+                        }
+                    },
+                    stroke: {
+                      show: true,
+                      width: 1 
+                   },
+
+                    responsive: [{
+                        breakpoint: 640,
+                        options: {
+                            chart: { width: '70%' },
+                            legend: { position: 'bottom' }
+                        }
+                    }]
+                };
+
+                var chart = new ApexCharts(document.querySelector("#ministryChart"), options);
+                chart.render();
+            });
+    </script>
+    {{-- '#99ff00', '#333333' --}}
 </x-layout>

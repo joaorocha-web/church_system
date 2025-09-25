@@ -7,15 +7,22 @@ use Illuminate\Auth\Events\Registered;
 use App\Models\MemberContact;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserRole;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Exception;
+
+use function PHPUnit\Framework\throwException;
 
 class UserController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        $roles = Role::all();
+        return view('auth.register', compact('roles'));
     }
 
     public function store(LoginRequest $request)
@@ -25,17 +32,30 @@ class UserController extends Controller
             return $result;
         }
         
-        $user = User::create([
-            'member_id' => $result->id,
-            'name' => $result->first_name . '' . $result->last_name,
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'is_admin' => $request['is_admin']
-        ]);
+        DB::beginTransaction();
+        try{
+            $user = User::create([
+                'member_id' => $result->id,
+                'name' => $result->first_name . ' ' . $result->last_name,
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
+    
+            UserRole::create([
+                'user_id' => $user->id,
+                'role_id' => UserRole::MEMBER_ROLE
+            ]);
+    
+            DB::commit();
 
-        event(new Registered($user));
-        
-        return redirect()->route('verification.notice');
+            event(new Registered($user));
+            
+            return redirect()->route('verification.notice');
+        }catch(Exception $e){
+            DB::rollBack();
+
+            return redirect()->back()->with('error', 'Falha ao criar usuário');
+        }
     }
 
     private function autenticateMember($email)

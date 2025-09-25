@@ -9,5 +9,5 @@ class MemberMinistry extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $fillable = ['member_id', 'ministry_id', 'status_id', 'start_date', 'end_date', 'assigned_by'];
 }

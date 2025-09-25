@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_contacts', function (Blueprint $table) {
+        Schema::create('ministry_participation_status', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
-            $table->string('email');
-            $table->string('phone_number_1');
-            $table->string('phone_number_2')->nullable();
+            $table->string('name');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_contacts');
+        Schema::dropIfExists('ministry_participation_status');
     }
 };

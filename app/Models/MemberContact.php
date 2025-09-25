@@ -13,8 +13,8 @@ class MemberContact extends Model
     protected $fillable = [
         'member_id', 
         'email',
-        'telefone_1',
-        'telefone_2'
+        'phone_number_1',
+        'phone_number_2'
     ];
 
     public $timestamps = false;

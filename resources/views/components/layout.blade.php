@@ -15,7 +15,7 @@
     <div>
         <header class="bg-black shadow-xl/30  text-white p-4 md:p-6 flex justify-between">
             <div class="flex-col align-center ml-4">
-                <span class=" text-center font-bold sm:text-2xl" >A Caminho do Alvo</span>  
+                <span class=" text-center font-bold sm:text-2xl" ><a href="/home">A Caminho do Alvo</a></span>  
             </div>
             {{-- <div class="">
                 <i class="bi bi-list" id="list"></i>

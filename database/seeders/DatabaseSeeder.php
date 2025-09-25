@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        MemberMinistry::factory(10)->create();
+        MemberMinistry::factory(30)->create();
 
         Member::all()->each(function ($member){
             MemberContact::factory()->create([

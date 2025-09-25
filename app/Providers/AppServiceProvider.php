@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\Response;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('admin', function(User $user){
-            return $user->is_admin
+            return $user->roles->contains('id', UserRole::ADMIN_ROLE)
             ? Response::allow()
             : Response::deny('Você não é um administrador.');
         });

@@ -1,12 +1,5 @@
 <x-layout>
     <style>
-        .windows{
-            display: grid;
-            grid-template-columns: repeat(auto-fit ,minmax(300px, 1fr));
-        }
-        .card{
-            height: 300px;
-        }
         
         .bg-igreja-responsive {
         background-image: url('{{asset('imagem-igreja-800.jpg')}}');
@@ -34,13 +27,13 @@
                     <a href="">Calendário Igreja</a>
                 </li>
                 <li class="hover:underline p-2 rounded hover:bg-white/20">
-                    <a href="">Ministérios</a>
+                    <a href="{{route('ministry.index')}}">Ministérios</a>
                 </li>
                 
             </ul> 
         </nav>
     </div>
-    <div class="windows" style="--columns: 4">
+    <div class="grid [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]" style="--columns: 4">
         <x-window style="background-image: url('{{asset('retiro.jpeg')}}')">
             <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500"></div>
             <x-icon class="bi bi-house z-1"/>
@@ -53,6 +46,7 @@
             <h2 class="text-bold font-bold group-hover:scale-140 transition-scale duration-300 group-hover:mb-4 z-1"> Hall de Membros!</h2>
             <a href="{{route('member.index')}}" class="mt-2 border rounded px-1 group-hover:scale-140 transition-scale duration-300 hover:bg-white/20">Analisar</a>
         </x-window>
+
     </div>
 
     

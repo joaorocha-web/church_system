@@ -29,18 +29,18 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-5">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="telefone_1">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="phone_number_1">
           Telefone
         </label>
-        <x-form-input id="telefone_1" name="telefone_1"  type="text" placeholder="ex: (32)99999999" value="{{old('telefone_1')}}"/>
-        <x-error name="telefone_1"/>
+        <x-form-input id="phone_number_1" name="phone_number_1"  type="text" placeholder="ex: (32)99999999" value="{{old('phone_number_1')}}"/>
+        <x-error name="phone_number_1"/>
       </div>
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="telefone_2">
+        <label class="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2" for="phone_number_2">
           Telefone
         </label>
         <div class="relative">
-          <x-form-input id="telefone_2" name="telefone_2" type="text" placeholder="ex: (32)99999999" value="{{old('telefone_2')}}"/>
+          <x-form-input id="phone_number_2" name="phone_number_2" type="text" placeholder="ex: (32)99999999" value="{{old('phone_number_2')}}"/>
         </div>
       </div>
     </div>

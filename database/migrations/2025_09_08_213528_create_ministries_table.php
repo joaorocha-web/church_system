@@ -15,7 +15,11 @@ return new class extends Migration
         Schema::create('ministries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('active')->default(true);
+            $table->text('description')->nullable();
+            $table->foreignId('leader_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('image_url')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
         });
 
         DB::table('ministries')->insert([

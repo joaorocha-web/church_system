@@ -18,8 +18,8 @@ class MemberContactFactory extends Factory
     {
         return [
             "email" => fake()->email(),
-            "telefone_1" => fake()->phoneNumber(),
-            "telefone_2" => null,
+            "phone_number_1" => fake()->phoneNumber(),
+            "phone_number_2" => null,
         ];
     }
 }
