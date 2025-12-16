@@ -62,7 +62,7 @@
     }
 }
 
-@import '../../vendor/power-components/livewire-powergrid/resources/css/tailwind4.css';
+@import "./powergrid.css";
 
 /** enable dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
