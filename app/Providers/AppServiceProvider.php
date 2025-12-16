@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         Gate::define('admin', function(User $user){
             return $user->roles->contains('id', UserRole::ADMIN_ROLE)
             ? Response::allow()
