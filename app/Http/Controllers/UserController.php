@@ -14,6 +14,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 use function PHPUnit\Framework\throwException;
 
@@ -33,6 +34,7 @@ class UserController extends Controller
         }
       
         DB::beginTransaction();
+        Log::info("Iniciando transação para criação de usuário.");
         try{
             $user = User::create([
                 'member_id' => $result->id,
@@ -40,7 +42,7 @@ class UserController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
-    
+            Log::info("Usuário criado com sucesso.");
             UserRole::create([
                 'user_id' => $user->id,
                 'role_id' => UserRole::MEMBER_ROLE
@@ -53,7 +55,7 @@ class UserController extends Controller
             return redirect()->route('verification.notice');
         }catch(Exception $e){
             DB::rollBack();
-
+            Log::error("Erro ao criar usuário: " . $e->getMessage());
             return redirect()->back()->with('error', 'Falha ao criar usuário');
         }
     }
@@ -62,6 +64,7 @@ class UserController extends Controller
     {
         $result = MemberContact::where('email', $email)->with('member')->first();
         if(empty($result)){
+            Log::error("Tentativa de registro com e-mail não cadastrado como membro: $email");
             return redirect()->back()->withInput()
             ->withErrors(['email' => 'Esse e-mail é inválido. Certifique-se de que o e-mail utilizado em seu cadastro como membro é o mesmo']);
         } 
