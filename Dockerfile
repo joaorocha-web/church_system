@@ -28,4 +28,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD service nginx start && php-fpm
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD service nginx start && /start.sh
+
