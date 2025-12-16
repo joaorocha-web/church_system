@@ -71,11 +71,15 @@ class MinistryController extends Controller
 
         $ministry = Ministry::findOrFail($id);
         $member = Member::where('id', Auth::id())->first();
+        $today = today();
     
 
         MemberMinistry::create([
             'member_id' => $member->id,
-            'ministry_id' => $ministry->id
+            'ministry_id' => $ministry->id,
+            'status_id' => 1,
+            'start_date' => $today,
+            'end_date' => null
         ]);
 
         return redirect()->route('ministry.index')->with('success', 'Inscrição realizada com sucesso no ministério ');

@@ -5,6 +5,7 @@ use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -52,4 +53,8 @@ Route::controller(MinistryController::class)->middleware('auth')->group(function
     Route::get('/ministerios/inscrever/{id}', 'subscribe')->name('ministry.subscribe');
 });
 
-Route::get('/dashboard/gender', [DashboardController::class, 'getGenderDistribution'])->name('dashboard.gender');
+Route::get('/dashboard/data', [DashboardController::class, 'data'])->name('dashboard.data');
+
+Route::get('/events', [EventsController::class, 'create'])->name('events.create');
+Route::post('/events', [EventsController::class, 'store'])->name('events.store');
+

@@ -48,6 +48,10 @@
         </x-window>
 
     </div>
-
+  
+      
+    
+   
+    @include('calendar')
     
 </x-layout>

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
             $table->foreignId('ministry_id')->constrained('ministries')->onDelete('cascade');
-            $table->foreignId('status_id')->constrained('ministry_participation_status')->onDelete('restrict');
+            $table->foreignId('status_id')->constrained('ministry_participation_status')->default(1)->onDelete('restrict');
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->foreignId('assigned_by')->nullable()->constrained('users');
 
             $table->unique(['member_id', 'ministry_id']);

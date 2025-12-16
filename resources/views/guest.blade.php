@@ -26,8 +26,7 @@
     </style>
     
     <div class="h-[400px] md:h-[350px] lg:h-[500px] flex justify-center items-center relative" >
-        <h1 class="text-beige font-bold text-2xl md:text-7xl z-1">SEJA BEM VINDO!</h1>
-        {{-- <div class="absolute inset-0 bg-black/70"></div> --}}
+        <h1 class="font-title text-beige font-bold text-2xl md:text-7xl z-1">SEJA BEM VINDO!</h1>
     </div>
 
     <div class="windows" style="--columns: 4">

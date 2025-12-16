@@ -11,7 +11,7 @@ class UserRole extends Model
         'role_id'
     ];
 
-    const MEMBER_ROLE = 1;
+    const ADMIN_ROLE = 1;
     const VOLUNTIER_ROLE = 2;
-    const ADMIN_ROLE = 3;
+    const MEMBER_ROLE = 3;
 }

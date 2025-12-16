@@ -31,7 +31,7 @@ class UserController extends Controller
         if($result instanceof RedirectResponse){
             return $result;
         }
-        
+      
         DB::beginTransaction();
         try{
             $user = User::create([

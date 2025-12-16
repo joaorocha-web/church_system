@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>ICA</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
+    @livewireStyles
+
 </head>
-<body class="font-title">
+<body class="">
     <style>
         
     </style>
     <div>
         <header class="bg-black shadow-xl/30  text-white p-4 md:p-6 flex justify-between">
             <div class="flex-col align-center ml-4">
-                <span class=" text-center font-bold sm:text-2xl" ><a href="/home">A Caminho do Alvo</a></span>  
+                <span class="font-title text-center font-bold sm:text-2xl" ><a href="/home">A Caminho do Alvo</a></span>  
             </div>
-            {{-- <div class="">
-                <i class="bi bi-list" id="list"></i>
-            </div> --}}
+
             @guest
             <div class=" rounded p-1 hover:bg-white/20">
                 <span><a href="{{route('login.create')}}">Login</a></span>
@@ -42,29 +42,16 @@
 
                 </ul>
             </div>
+
+            @livewireScripts
+            @livewireCalendarScripts
             {{$slot}}
+            
+      
         </main>
         <footer>
             
         </footer>
     </div>
-
-    <script>
-        
-        let list = document.getElementById('list');
-        let div = document.getElementById('info');
-        
-        list.addEventListener('click', function() {
-            
-            if (div.classList.contains('hidden')) {
-                div.classList.remove('hidden');
-                div.classList.add('block');
-            } else {
-                div.classList.remove('block');
-                div.classList.add('hidden');
-            }
-        });
-
-    </script>
 </body>
 </html>

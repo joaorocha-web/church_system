@@ -1,12 +1,18 @@
 <x-layout >
-  <div class="bg-white grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
+  <div class="bg-white grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
         
-        <!-- Card do Gráfico -->
-        <div class="bg-gray-500 rounded-xl shadow-2xl p-2 hover:scale-105 hover:bg-gray-900">
+    
+        <div class=" bg-black rounded-xl shadow p-2 hover:scale-105 hover:bg-gray-900">
             <h2 class="text-xl font-bold text-gray-200 mb-4 text-center">
                 Homens x Mulheres
             </h2>
-            <div id="ministryChart"></div>
+            <div id="genderChart"></div>
+        </div>
+        <div class="bg-black rounded-xl shadow p-2 hover:scale-105 hover:bg-gray-900">
+            <h2 class="text-xl font-bold text-gray-200 mb-4 text-center">
+                Faixa etária
+            </h2>
+            <div id="ageGroupChart"></div>
         </div>
 
     </div>
@@ -28,7 +34,7 @@
             type="button">
             <a href="/home">Home</a>
           </button>
-          @can('create', App\Models\Member::class)
+          
           <button
             class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">
@@ -40,7 +46,6 @@
             </svg>
             <a href="{{route('member.create')}}">Add member</a>
           </button>
-          @endcan
         </div>
       </div>
       <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -72,180 +77,50 @@
             </ul>
           </nav>
         </div>
-        <div class="w-full md:w-72">
-          <div class="relative h-10 w-full min-w-[200px]">
-            <div class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
-              </svg>
-            </div>
-            <input
-              class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              placeholder="" />
-            <label
-              class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-              Search
-            </label>
-          </div>
-        </div>
+        
       </div>
     </div>
-    <div class="p-6 px-0 overflow-x-auto">
-      <table class="w-full mt-4 text-left table-auto min-w-max">
-        <thead>
-          <tr>
-            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                Membro
-              </p>
-            </th>
-            <th class="hidden sm:table-cell p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                Ministério
-              </p>
-            </th>
-            <th class="hidden sm:table-cell p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                Status
-              </p>
-            </th>
-            <th class="hidden sm:table-cell p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                Desde
-              </p>
-            </th>
-            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                Editar
-              </p>
-            </th>
-            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-              </p>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($members as $member)
-            <tr>
-            <td class="p-4 border-b border-blue-gray-50">
-              <div class="flex items-center gap-3">
-                <div class="flex flex-col">
-                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                    {{$member->first_name}}
-                  </p>
-                  <p
-                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                    {{$member->contact->email}}
-                  </p>
-                </div>
-              </div>
-            </td>
-            <td class="hidden sm:table-cell p-4 border-b border-blue-gray-50">
-              <div class="flex flex-col">
-                @foreach($member->ministries as $ministry)
-                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                    {{$ministry->name}}
-                  </p>
-                @endforeach
-                
-              </div>
-            </td>
-            <td class="hidden sm:table-cell p-4 border-b border-blue-gray-50">
-              <div class="w-max">
-                <div
-                  class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                  <span class="">{{$member->status->situation}}</span>
-                </div>
-              </div>
-            </td>
-            <td class="hidden sm:table-cell p-4 border-b border-blue-gray-50">
-              <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                {{$member->membership_start}}
-              </p>
-            </td>
-            <td class="p-4 border-b border-blue-gray-50">
-                <a href="{{route('member.edit')}}"
-                class= "bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded">
-                  <i class="bi bi-pencil-square"></i>
-                </a>
-            </td>
-            
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
-    <div class="flex items-center justify-between p-4 border-t border-blue-gray-50">
-      <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-        Mostrando {{$members->firstItem()}} a {{$members->lastItem()}}
-      </p>
-      <div class="flex gap-2">
-        @if ($members->onFirstPage())
-              <button disabled
-                  class="select-none rounded-lg border border-gray-300 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-300 transition-all cursor-not-allowed"
-                  type="button">
-                  Previous
-              </button>
-          @else
-              <a href="{{ $members->previousPageUrl() }}"
-                  class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]">
-                  Previous
-              </a>
-          @endif
-        @if ($members->hasMorePages())
-              <a href="{{ $members->nextPageUrl() }}"
-                  class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]">
-                  Next
-              </a>
-          @else
-              <button disabled
-                  class="select-none rounded-lg border border-gray-300 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-300 transition-all cursor-not-allowed"
-                  type="button">
-                  Next
-              </button>
-          @endif
-      </div>
+    <livewire:members-table/>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        fetch("{{ route('dashboard.gender') }}")
+        fetch("{{ route('dashboard.data') }}")
             .then(res => res.json())
             .then(data => {
-                var options = {
-                    chart: {
-                        type: 'donut',
-                        height: 200
-                    },
-                    series: [data.male, data.female],
+                new ApexCharts(document.querySelector('#genderChart'), {
+                    chart: { type: 'donut', height: 200 },
+                    series: [data.genders.male, data.genders.female],
                     labels: ['Homens', 'Mulheres'],
-                    colors: ['#99ff00', '#333333'],
+                    colors: ['#0036EB', '#EB01CD'],
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                          colors: '#ffffff', 
-                        }
+                      position: 'left',
                     },
+                    responsive: [{ breakpoint: 640, options: { chart: { width: '80%' }, legend: { position: 'bottom' } } }],
                     stroke: {
                       show: true,
-                      width: 1 
-                   },
+                      width: 0.8 
+                    }
 
-                    responsive: [{
-                        breakpoint: 640,
-                        options: {
-                            chart: { width: '70%' },
-                            legend: { position: 'bottom' }
-                        }
-                    }]
-                };
+        }).render();
+                
+                new ApexCharts(document.querySelector('#ageGroupChart'), {
 
-                var chart = new ApexCharts(document.querySelector("#ministryChart"), options);
-                chart.render();
-            });
+                  chart: { type: 'donut', height: 200},
+                  series: [data.ageGroup.old, data.ageGroup.adult, data.ageGroup.young, data.ageGroup.child],
+                  labels: ['Idosos 55+', 'Adultos 25+', 'Jovens 12+', 'Crianças'],
+                  colors: ['#20C048', '#32964B', '#366B43', '#00EB39'],
+                  legend: {
+                    position: 'left',
+                  },
+                  responsive: [{ breakpoint: 640, options: { chart: { width: '80%' }, legend: { position: 'bottom' } } }],
+                  stroke: {
+                    show: true,
+                    width: 0.8 
+                  }
+                 }).render();
+                });
+                
     </script>
-    {{-- '#99ff00', '#333333' --}}
+
 </x-layout>
