@@ -13,7 +13,7 @@ class MemberController extends Controller
 {
     public function index()
     {
-        Gate::authorize('admin');
+        // Gate::authorize('admin');
         $members = Member::with(['ministries', 'contact', 'status'])->orderBy('created_at', 'desc')->paginate(6);
      
         return view('member.index', compact('members'));
