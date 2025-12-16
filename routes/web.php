@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 Route::view('/', 'guest');
 Route::view('/home', 'home')->middleware('auth', 'verified')->name('home');
 
-Route::get('/membros', [MemberController::class, 'index'])->name('member.index')->middleware('auth');
-Route::get('/novo-membro', [MemberController::class, 'create'])->name('member.create')->can('create', App\Models\Member::class);
+Route::get('/membros', [MemberController::class, 'index'])->name('member.index');
+Route::get('/novo-membro', [MemberController::class, 'create'])->name('member.create');
 Route::post('/novo-membro', [MemberController::class, 'store'])->name('member.store');
 Route::get('/editar-membro', [MemberController::class, 'edit'])->name('member.edit');
 
