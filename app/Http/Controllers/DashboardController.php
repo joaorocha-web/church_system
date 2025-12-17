@@ -20,8 +20,8 @@ class DashboardController extends Controller
         $data = Member::selectRaw('gender_id, COUNT(*) as total')->where('situation_id',1)->groupBy('gender_id')->get()->toArray();
 
         return [
-            'male' => $data[0]['total'],
-            'female' => $data[1]['total']
+            'male' => $data[0]['total'] ?? 0,
+            'female' => $data[1]['total'] ?? 0
         ]; 
     }
     
